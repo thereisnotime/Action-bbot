@@ -19,7 +19,7 @@ runs:
   args:
     - -c
     - |
-      args="--url=${{ inputs.target }}"
+      args="-t ${{ inputs.target }}"
       additional_args="${{ inputs.additional_args }}"
       set -- $additional_args
       for arg do
@@ -27,7 +27,7 @@ runs:
       done
       echo $args
       cd /usr/src/bbot
-      exec /usr/local/bin/python3 /usr/src/bbot/bbot $args
+      exec bbot $args
 
 branding:
   icon: "shuffle"
