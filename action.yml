@@ -1,0 +1,34 @@
+# action.yml
+name: "thereisnotime/action-bbot"
+description: "Run bbot in your GitHub Actions workflow"
+
+inputs:
+  target:
+    description: "Target URL (e.g. blackfox-security.com)"
+    required: true
+    default: ""
+  additional_args:
+    description: "Additional arguments to pass to bbot. Default is --yes to skip prompts"
+    required: false
+    default: "--yes"
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  entrypoint: /bin/bash
+  args:
+    - -c
+    - |
+      args="--url=${{ inputs.target }}"
+      additional_args="${{ inputs.additional_args }}"
+      set -- $additional_args
+      for arg do
+        args="$args $arg"
+      done
+      echo $args
+      cd /usr/src/bbot
+      exec /usr/local/bin/python3 /usr/src/bbot/bbot.py $args
+
+branding:
+  icon: "shuffle"
+  color: "red"

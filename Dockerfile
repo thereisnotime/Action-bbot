@@ -1,0 +1,1 @@
+FROM blacklanternsecurity/bbot:stable
