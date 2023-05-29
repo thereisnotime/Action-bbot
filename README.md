@@ -6,7 +6,7 @@ NOTE: Due to weird versioning of the author the version is locked to 2.5.0 for n
 
 ## Examples
 
-### Start a scan
+### Start a scan (no module)
 
 ```yaml
 - name: Scan with bbot
@@ -15,7 +15,7 @@ NOTE: Due to weird versioning of the author the version is locked to 2.5.0 for n
     target: "blackfox-security.com"
 ```
 
-### Weekly scheduled scans
+### Weekly scheduled scans (enumerate subdomains)
 
 ```yaml
 on:
@@ -31,7 +31,7 @@ jobs:
         uses: thereisnotime/action-bbot@master
         with:
           target: "blackfox-security.com"
-          additional_args: "--yes"
+          additional_args: "--yes -f subdomain-enum"
 ```
 
 ### Use latest version in a job
@@ -45,7 +45,7 @@ scan_bbot:
       uses: thereisnotime/action-bbot@master
       with:
         target: "blackfox-security.com"
-        additional_args: "--yes"
+        additional_args: "--yes -f subdomain-enum"
 ```
 
 ### Use latest version in a job and upload the results back to the repository
@@ -67,7 +67,7 @@ scan_bbot:
       uses: thereisnotime/action-bbot@master
       with:
         target: ${{ env.TARGET }}
-        additional_args: "--yes"
+        additional_args: "--yes -f subdomain-enum"
     - name: Commit and push changes
       uses: EndBug/add-and-commit@v9
       with:
