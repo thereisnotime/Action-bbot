@@ -27,7 +27,7 @@ runs:
       done
       echo $args
       cd /usr/src/bbot
-      exec /usr/local/bin/python3 /usr/src/bbot/bbot.py $args
+      exec /usr/local/bin/python3 /usr/src/bbot/bbot $args
 
 branding:
   icon: "shuffle"
